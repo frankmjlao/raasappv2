@@ -1,0 +1,90 @@
+_schema-version: "3.1"
+ID: raasappv2
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: raasappv2-srv
+  type: nodejs
+  path: srv
+  requires:
+  - name: raasappv2-db
+  - name: uaa_raasappv2
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+- name: raasappv2-db-deployer
+  type: hdb
+  path: db
+  requires:
+  - name: raasappv2-db
+    properties:
+      TARGET_CONTAINER: ~{hdi-service-name}
+  - name: cross-container-service-1
+    group: SERVICE_REPLACEMENTS
+    properties:
+      key: ServiceName_1
+      service: ~{the-service-name}
+  parameters:
+    buildpack: nodejs_buildpack
+- name: app
+  type: approuter.nodejs
+  path: app
+  requires:
+  - name: raasappv2_html_repo_runtime
+  - name: uaa_raasappv2
+  - name: srv-api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: srv-api
+      url: ~{srv-url}
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+- name: raasappv2_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: raasappv2_html_repo_host
+    parameters:
+      content-target: true
+resources:
+- name: raasappv2-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+  properties:
+    hdi-service-name: ${service-name}
+- name: raasappv2_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: uaa_raasappv2
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: raasappv2-xsuaa-service
+    service-plan: application
+- name: raasappv2_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: cross-container-service-1
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: CC_ACCESS
+  properties:
+    the-service-name: ${service-name}
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install --production
+    - npx -p @sap/cds-dk cds build --production
