@@ -98,7 +98,7 @@ sap.ui.define([
 				var sQuery = oEvent.getParameter("query");
 
 				if (sQuery && sQuery.length > 0) {
-					aTableSearchState = [new Filter("title", FilterOperator.Contains, sQuery)];
+					aTableSearchState = [new Filter("TITLE", FilterOperator.Contains, sQuery)];
 				}
 				this._applySearch(aTableSearchState);
 			}
@@ -130,7 +130,7 @@ sap.ui.define([
 
 			oItem.getBindingContext().requestCanonicalPath().then(function (sObjectPath) {
 				that.getRouter().navTo("object", {
-					objectId_Old: oItem.getBindingContext().getProperty("ws_transaction_id"),
+					objectId_Old: oItem.getBindingContext().getProperty("WS_TRANSACTION_ID"),
 					objectId : sObjectPath.slice("/Blogs".length) // /Products(3)->(3)
 				});
 			});

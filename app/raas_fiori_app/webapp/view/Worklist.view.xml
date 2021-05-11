@@ -20,7 +20,7 @@
 				items="{
 					path: '/Blogs',
 					sorter: {
-						path: 'title',
+						path: 'TITLE',
 						descending: false
 					}
 				}"
@@ -57,10 +57,10 @@
 						press=".onPress">
 						<cells>
 							<ObjectIdentifier
-								title="{title}"/>
+								title="{TITLE}"/>
 							<ObjectNumber
 								number="{
-									path: 'ws_transaction_id',
+									path: 'WS_TRANSACTION_ID',
 									formatter: '.formatter.numberUnit'
 								}"
 								unit="{}"/>

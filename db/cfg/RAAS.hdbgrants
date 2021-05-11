@@ -1,10 +1,15 @@
 {
   "CC_ACCESS": {
     "object_owner" : {
-      "roles" : ["CCROLE" ]
+      "roles" : [
+          "CCROLE"
+          
+      
+    ]
     },
     "application_user" : {
-      "roles" : ["CCROLE" ]
+      "roles" : ["CCROLE" 
+    ]
     }
   }
 }

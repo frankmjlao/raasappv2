@@ -1,4 +1,4 @@
 VIEW "RegionTextsView"
-	(REGION, DESCRIPTION )
-	as select REGION, DESCRIPTION
-	from REGIONS
+	("REGION", "DESCRIPTION" )
+	as select "REGION", "DESCRIPTION"
+	from "REGIONS"

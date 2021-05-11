@@ -1,0 +1,9 @@
+{
+  "WSBLOGS": {
+    "target": {
+      "object": "WSBLOGS",
+      "schema": "RAAS",
+      "database": "H00"
+    }
+  }
+}
