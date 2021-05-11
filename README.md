@@ -23,3 +23,12 @@ File or Folder | Purpose
 ## Learn More
 
 Learn more at https://cap.cloud.sap/docs/get-started/.
+
+
+
+~~~~~~~~~~~~~~~~~~~~developer initial
+contact: minjie.lao@sap.com
+
+update: may-11-2021, project is able to access table schema
+
+the project connecting UI5 to hana schema table
