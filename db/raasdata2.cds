@@ -26,10 +26,34 @@ context app.raasdata2 {
             LOGTEXT   : LText;
     };
 
+
+    entity Blogs {
+        url : LText;
+        title:  LText;
+        type:  LText;
+        actualtags:  LText;
+        updated:  LText;
+        created:  LText;
+        language:  LText;
+        answercount:  LText;
+        followerscount:  LText;
+        likecount:  LText;
+        votecount:  LText;
+        commentcount:  LText;
+        author_displayName:  LText;
+        author_username:  LText;
+        collectionflag:  LText;
+        scopeofkeyword:  LText;
+        keywords: LText;
+        numberofkeywordmatched:  LText;
+        description: LText;
+        key ws_transaction_id: Integer;
+    };
+
 }
 
 @cds.persistence.exists
-entity![WSBLOGSVIEW2]{
+entity![WSBLOGSVIEW3]{
     key![URL]                    : String(5000)@title : 'URL';
     key![TITLE]                  : String(5000)@title : 'TITLE';
     key![TYPE]                   : String(5000)@title : 'TYPE';
@@ -53,8 +77,8 @@ entity![WSBLOGSVIEW2]{
 }
 
 
-@cds.persistence.exists 
+/*@cds.persistence.exists 
 Entity ![RegionTextsView] {
  key    ![REGION]: String(5)  @title: 'REGION' ; 
 key     ![DESCRIPTION]: String(100)  @title: 'DESCRIPTION' ; 
-}
+}*/

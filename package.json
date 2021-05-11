@@ -19,7 +19,7 @@
     "sqlite3": "^5.0.2"
   },
   "scripts": {
-    "start": "NODE_ENV=production cds run"
+    "start": "DEBUG=* NODE_ENV=production cds run"
   },
   "cds": {
     "build": {
